@@ -1,0 +1,37 @@
+version: '3.4'
+
+services:
+  finanzas_consultas:
+    image: finanzas_srvc
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 5000:5000
+
+  finanzas_comandos:
+    image: finanzas_srvc
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 5001:5001
+
+  redis:
+    image: redis:6.2.5
+    ports:
+      - 6380:6380
+
+  locust:
+    image: locustio/locust
+    ports:
+      - 8089:8089
+    volumes:
+      - ./locust/:/mnt/locust
+    command: -f /mnt/locust/locustfile.py --master -H http://master:8089
+  
+  locust_worker:
+    image: locustio/locust
+    volumes:
+      - ./locust/:/mnt/locust
+    command: -f /mnt/locust/locustfile.py --worker --master-host locust
