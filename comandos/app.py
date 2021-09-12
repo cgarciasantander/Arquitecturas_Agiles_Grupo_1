@@ -35,4 +35,4 @@ class VistaConsumo(Resource):
        registrar_consumo.apply_async(args)
        return json.dumps(consumo)
 
-api.add_resource(VistaConsumo, '/consumos/1')
+api.add_resource(VistaConsumo, '/consumos')
