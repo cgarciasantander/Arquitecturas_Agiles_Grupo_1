@@ -27,4 +27,4 @@ class VistaReporte(Resource):
         return reporte
     
 api = Api(app)
-api. add_resource(VistaReporte, '/reporte/<string:fechaInicio>/<string:fechaFin>')
+api.add_resource(VistaReporte, '/reporte')
