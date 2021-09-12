@@ -7,7 +7,7 @@ class Consumo(db.Model):
     id = db.Column(db.Integer , primary_key=True)
     pacienteId = db.Column(db.String(128))
     monto = db.Column(db.Float)
-    realizadoEl = db.Column(db.Date)
+    realizadoEl = db.Column(db.String(128))
 
 class ConsumoSchema(SQLAlchemyAutoSchema):
     class Meta:
