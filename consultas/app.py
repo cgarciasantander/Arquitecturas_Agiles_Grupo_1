@@ -1,5 +1,5 @@
 from consultas import create_app
-from flask_restful import Api, Resource
+from flask_restful import Api, Resource, request
 from .modelos import db, Consumo, ConsumoSchema
 
 app = create_app('default')
@@ -13,17 +13,24 @@ consumo_schema = ConsumoSchema()
 
 class VistaReporte(Resource):
 
-    def get(self, fechaInicio, fechaFin):
-
+    def get(self):
+        fecha_inicio = request.args.get('fechaInicio')
+        fecha_fin = request.args.get('fechaFin')
         consumos = Consumo.query.filter(
-            Consumo.realizadoEl >= fechaInicio).filter(Consumo.realizadoEl <= fechaFin)
+            Consumo.realizadoEl >= fecha_inicio).filter(Consumo.realizadoEl <= fecha_fin)
         ingresos = 0.0
         impuestos = 0.0
         for actual in consumos:
             ingresos += actual.monto
         impuestos = ingresos*0.15
         gananciaNeta = ingresos - impuestos
-        reporte = {"fechaInicio":fechaInicio, "fechaFin":fechaFin,"ingresos":ingresos,"impuestos":impuestos,"gananciaNeta":gananciaNeta}
+        reporte = {
+            "fechaInicio":fecha_inicio,
+            "fechaFin":fecha_fin,
+            "ingresos":ingresos,
+            "impuestos":impuestos,
+            "gananciaNeta":gananciaNeta
+        }
         return reporte
     
 api = Api(app)

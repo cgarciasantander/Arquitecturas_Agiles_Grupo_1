@@ -2,11 +2,14 @@ from consultas.modelos.modelos import ConsumoSchema
 from comandos import create_app
 from .modelos import db, Consumo
 from flask_restful import Resource, Api
+from datetime import datetime
 from flask import Flask, request
 import json
 from celery import Celery
+import os
 
-celery_app = Celery('tasks', broker = 'redis://localhost:6379/0')
+redis_host = os.environ.get('REDIS_HOST')
+celery_app = Celery('tasks', broker = redis_host)
 
 app = create_app('default')
 app_context = app.app_context()
@@ -18,6 +21,7 @@ db.create_all()
 
 @celery_app.task(name='tabla.registrar')
 def registrar_consumo(consumo_json):
+    print(consumo_json)
     pass
 
 consumo_schema = ConsumoSchema()
@@ -25,7 +29,11 @@ consumo_schema = ConsumoSchema()
 class VistaConsumo(Resource):
 
     def post(self):
-       nuevo_consumo = Consumo(pacienteId=request.json['pacienteId'], monto=request.json['monto'], realizadoEl=request.json['realizadoEl'])
+       nuevo_consumo = Consumo(
+           pacienteId=request.json['pacienteId'], 
+           monto=request.json['monto'], 
+           realizadoEl=datetime.fromisoformat(request.json['realizadoEl'])
+        )
        id_consumo = nuevo_consumo.id
        db.session.add(nuevo_consumo)
        db.session.commit()

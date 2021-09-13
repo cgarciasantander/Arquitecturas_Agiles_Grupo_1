@@ -2,40 +2,69 @@ version: '3.4'
 
 services:
   finanzas_consultas:
+    container_name: finanzas_consultas
     image: finanzas_srvc
     build:
       context: .
       dockerfile: ./Dockerfile
     ports:
       - 5000:5000
-    volumes: 
-      - ./:/app
-    # command: 
-    #   - gunicorn --bind 0.0.0.0:5000 consultas.app
+    environment: 
+      - FLASK_APP=consultas/app
+      - REDIS_HOST=redis://redis:6379/0
+    volumes:
+      - finanzas_service_db:/app/consultas
+    command: flask run --host=0.0.0.0 --port=5000
 
-  # finanzas_comandos:
-  #   image: finanzas_srvc
-  #   build:
-  #     context: .
-  #     dockerfile: ./Dockerfile
-  #   ports:
-  #     - 5000:5001
+  finanzas_consultas_worker:
+    container_name: finanzas_consultas_worker
+    image: finanzas_srvc
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 5001:5000
+    environment: 
+      - FLASK_APP=consultas/app
+      - REDIS_HOST=redis://redis:6379/0
+    volumes:
+      - finanzas_service_db:/app/consultas
+    command: celery -A consultas.tareas.tareas worker
+    depends_on:
+      - finanzas_consultas
+      - redis
 
-  # redis:
-  #   image: redis:6.2.5
-  #   ports:
-  #     - 6380:6380
+  finanzas_comandos:
+    container_name: finanzas_comandos
+    image: finanzas_srvc
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 5002:5000
+    environment: 
+      - FLASK_APP=comandos/app
+      - REDIS_HOST=redis://redis:6379/0
+    command: flask run --host=0.0.0.0 --port=5000
 
-  # locust:
-  #   image: locustio/locust
-  #   ports:
-  #     - 8089:8089
-  #   volumes:
-  #     - ./locust/:/mnt/locust
-  #   command: -f /mnt/locust/locustfile.py --master -H http://master:8089
+  redis:
+    image: redis:6.2.5
+    ports:
+      - 6379:6379
+
+  locust:
+    image: locustio/locust
+    ports:
+      - 8089:8089
+    volumes:
+      - ./locust/:/mnt/locust
+    command: -f /mnt/locust/locustfile.py --master -H http://finanzas_comandos:8089
   
-  # locust_worker:
-  #   image: locustio/locust
-  #   volumes:
-  #     - ./locust/:/mnt/locust
-  #   command: -f /mnt/locust/locustfile.py --worker --master-host locust
+  locust_worker:
+    image: locustio/locust
+    volumes:
+      - ./locust/:/mnt/locust
+    command: -f /mnt/locust/locustfile.py --worker --master-host locust
+
+volumes:
+  finanzas_service_db:
