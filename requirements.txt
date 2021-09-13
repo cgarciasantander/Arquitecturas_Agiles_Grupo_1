@@ -33,5 +33,4 @@ Werkzeug==2.0.1
 flask_sqlalchemy 
 marshmallow_sqlalchemy
 flask_restful
-json
 celery 
