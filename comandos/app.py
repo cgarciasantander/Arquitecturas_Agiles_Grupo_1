@@ -3,7 +3,6 @@ from comandos import create_app
 from .modelos import db, Consumo
 from flask_restful import Resource, Api
 from flask import Flask, request
-import requests
 import json
 from celery import Celery
 
