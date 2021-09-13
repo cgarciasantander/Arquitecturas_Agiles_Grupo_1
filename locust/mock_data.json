@@ -1,0 +1,152 @@
+[
+  {
+    "pacienteId": 4,
+    "monto": 444.94,
+    "realizadoEl": "2021-09-01"
+  },
+  {
+    "pacienteId": 4,
+    "monto": 483.92,
+    "realizadoEl": "2021-09-10"
+  },
+  {
+    "pacienteId": 3,
+    "monto": 138.84,
+    "realizadoEl": "2021-09-28"
+  },
+  {
+    "pacienteId": 2,
+    "monto": 264.34,
+    "realizadoEl": "2021-09-22"
+  },
+  {
+    "pacienteId": 1,
+    "monto": 370.84,
+    "realizadoEl": "2021-09-04"
+  },
+  {
+    "pacienteId": 2,
+    "monto": 318.7,
+    "realizadoEl": "2021-09-24"
+  },
+  {
+    "pacienteId": 5,
+    "monto": 33.09,
+    "realizadoEl": "2021-09-10"
+  },
+  {
+    "pacienteId": 3,
+    "monto": 258.87,
+    "realizadoEl": "2021-09-30"
+  },
+  {
+    "pacienteId": 4,
+    "monto": 78.84,
+    "realizadoEl": "2021-09-24"
+  },
+  {
+    "pacienteId": 1,
+    "monto": 199.58,
+    "realizadoEl": "2021-09-01"
+  },
+  {
+    "pacienteId": 5,
+    "monto": 118.21,
+    "realizadoEl": "2021-09-23"
+  },
+  {
+    "pacienteId": 1,
+    "monto": 65.31,
+    "realizadoEl": "2021-09-05"
+  },
+  {
+    "pacienteId": 1,
+    "monto": 443.66,
+    "realizadoEl": "2021-09-22"
+  },
+  {
+    "pacienteId": 3,
+    "monto": 218.23,
+    "realizadoEl": "2021-09-09"
+  },
+  {
+    "pacienteId": 1,
+    "monto": 369.44,
+    "realizadoEl": "2021-09-04"
+  },
+  {
+    "pacienteId": 1,
+    "monto": 422.75,
+    "realizadoEl": "2021-09-14"
+  },
+  {
+    "pacienteId": 3,
+    "monto": 376.65,
+    "realizadoEl": "2021-09-08"
+  },
+  {
+    "pacienteId": 5,
+    "monto": 153.21,
+    "realizadoEl": "2021-09-12"
+  },
+  {
+    "pacienteId": 4,
+    "monto": 278.39,
+    "realizadoEl": "2021-09-16"
+  },
+  {
+    "pacienteId": 4,
+    "monto": 186.54,
+    "realizadoEl": "2021-09-03"
+  },
+  {
+    "pacienteId": 3,
+    "monto": 384.45,
+    "realizadoEl": "2021-09-26"
+  },
+  {
+    "pacienteId": 3,
+    "monto": 291.42,
+    "realizadoEl": "2021-09-17"
+  },
+  {
+    "pacienteId": 4,
+    "monto": 349.55,
+    "realizadoEl": "2021-09-30"
+  },
+  {
+    "pacienteId": 3,
+    "monto": 394.98,
+    "realizadoEl": "2021-09-11"
+  },
+  {
+    "pacienteId": 4,
+    "monto": 158.16,
+    "realizadoEl": "2021-09-01"
+  },
+  {
+    "pacienteId": 2,
+    "monto": 175.37,
+    "realizadoEl": "2021-09-26"
+  },
+  {
+    "pacienteId": 4,
+    "monto": 400.45,
+    "realizadoEl": "2021-09-29"
+  },
+  {
+    "pacienteId": 3,
+    "monto": 498.59,
+    "realizadoEl": "2021-09-13"
+  },
+  {
+    "pacienteId": 4,
+    "monto": 455.08,
+    "realizadoEl": "2021-09-30"
+  },
+  {
+    "pacienteId": 5,
+    "monto": 404.42,
+    "realizadoEl": "2021-09-02"
+  }
+]
